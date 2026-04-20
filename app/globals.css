@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 224 71.4% 4.1%;
+    --card: 0 0% 100%;
+    --card-foreground: 224 71.4% 4.1%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 71.4% 4.1%;
+    --primary: 262.1 83.3% 57.8%;
+    --primary-foreground: 210 20% 98%;
+    --secondary: 220 14.3% 95.9%;
+    --secondary-foreground: 220.9 39.3% 11%;
+    --muted: 220 14.3% 95.9%;
+    --muted-foreground: 220 8.9% 46.1%;
+    --accent: 220 14.3% 95.9%;
+    --accent-foreground: 220.9 39.3% 11%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 262.1 83.3% 57.8%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 224 71.4% 4.1%;
+    --foreground: 210 20% 98%;
+    --card: 224 71.4% 4.1%;
+    --card-foreground: 210 20% 98%;
+    --popover: 224 71.4% 4.1%;
+    --popover-foreground: 210 20% 98%;
+    --primary: 263.4 70% 50.4%;
+    --primary-foreground: 210 20% 98%;
+    --secondary: 215 27.9% 16.9%;
+    --secondary-foreground: 210 20% 98%;
+    --muted: 215 27.9% 16.9%;
+    --muted-foreground: 217.9 10.6% 64.9%;
+    --accent: 215 27.9% 16.9%;
+    --accent-foreground: 210 20% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 215 27.9% 16.9%;
+    --input: 215 27.9% 16.9%;
+    --ring: 263.4 70% 50.4%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Prose styles for markdown */
+.prose {
+  @apply text-foreground;
+}
+.prose p {
+  @apply my-1.5 leading-relaxed;
+}
+.prose h1, .prose h2, .prose h3 {
+  @apply font-semibold text-foreground mt-3 mb-1.5;
+}
+.prose h1 { @apply text-lg; }
+.prose h2 { @apply text-base; }
+.prose h3 { @apply text-sm; }
+.prose ul, .prose ol {
+  @apply my-1.5 pl-5;
+}
+.prose li {
+  @apply my-0.5;
+}
+.prose code {
+  @apply bg-muted px-1 py-0.5 rounded text-xs font-mono;
+}
+.prose pre {
+  @apply bg-muted p-3 rounded-md overflow-x-auto my-2;
+}
+.prose pre code {
+  @apply bg-transparent p-0;
+}
+.prose strong {
+  @apply font-semibold;
+}
+.prose a {
+  @apply text-primary underline;
+}
+.prose blockquote {
+  @apply border-l-2 border-muted-foreground pl-3 italic text-muted-foreground my-2;
+}
