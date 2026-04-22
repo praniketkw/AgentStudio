@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { AgentsSidebar } from "@/components/AgentsSidebar";
 import { ChatInterface, createUserMessage, createAssistantMessage } from "@/components/ChatInterface";
@@ -16,7 +16,7 @@ type SSEEvent =
   | { type: "done"; messageId: string }
   | { type: "error"; error: string };
 
-export default function HomePage() {
+function HomePageInner() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [apiKey, setApiKey] = useState<string>("");
@@ -390,5 +390,13 @@ export default function HomePage() {
         </main>
       </div>
     </>
+  );
+}
+
+export default function HomePage() {
+  return (
+    <Suspense>
+      <HomePageInner />
+    </Suspense>
   );
 }
