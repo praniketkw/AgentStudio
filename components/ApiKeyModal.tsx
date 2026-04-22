@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Key, ExternalLink } from "lucide-react";
+import { Key, ExternalLink, Eye, EyeOff } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -23,6 +23,7 @@ interface ApiKeyModalProps {
 export function ApiKeyModal({ open, onSave, existingKey }: ApiKeyModalProps) {
   const [key, setKey] = useState(existingKey || "");
   const [error, setError] = useState("");
+  const [show, setShow] = useState(false);
 
   const handleSave = () => {
     const trimmed = key.trim();
@@ -51,17 +52,29 @@ export function ApiKeyModal({ open, onSave, existingKey }: ApiKeyModalProps) {
         <div className="flex flex-col gap-3">
           <div className="flex flex-col gap-1.5">
             <Label htmlFor="api-key">API Key</Label>
-            <Input
-              id="api-key"
-              type="password"
-              placeholder="sk-ant-api03-..."
-              value={key}
-              onChange={(e) => {
-                setKey(e.target.value);
-                setError("");
-              }}
-              onKeyDown={(e) => e.key === "Enter" && handleSave()}
-            />
+            <div className="relative">
+              <Input
+                id="api-key"
+                type={show ? "text" : "password"}
+                placeholder="sk-ant-api03-..."
+                value={key}
+                onChange={(e) => {
+                  setKey(e.target.value);
+                  setError("");
+                }}
+                onKeyDown={(e) => e.key === "Enter" && handleSave()}
+                className="pr-10"
+                autoComplete="off"
+              />
+              <button
+                type="button"
+                onClick={() => setShow((s) => !s)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                tabIndex={-1}
+              >
+                {show ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+              </button>
+            </div>
             {error && <p className="text-xs text-destructive">{error}</p>}
           </div>
 
